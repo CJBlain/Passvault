@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS passvault/pv.css">
+    <script src="https://kit.fontawesome.com/0a2f99a107.js" crossorigin="anonymous"></script>
+   
+    <title>Connor's Passsvault</title>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="form-box" id = "signupBox">
+        <h1  id="title"> Sign up</h1>
+        <form>
+            <div class="input-group">
+                <div class="input-field" id="nameField">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Name">
+                </div>
+               
+                <div class="input-field">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="Email">
+                </div>
+
+
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Password">
+                </div>
+                <p> Forgotten Password? <a href='#'>Click Here</a></p>
+            </div>
+            <div class="btn-field">
+                <button type="button" id="signupBtn">Register</button>
+                <button type="button" id="signinBtn" class="disable">Sign in</button>
+            </div>
+        </form>
+
+
+        <div class = "btn-about">
+            <button type="button" id = "aboutBtn"  onclick="displayText()"> About </button>
+        </div>
+        <div id="aboutText">
+            <p>Connor's Passvault is a password manager system created by Connor Blain as part of a first year University of Plymouth Computer Sceince Module</p>
+        </div>
+
+        
+        <div class = "btn-contact">
+            <button type="button" id = "contactBtn" > Contact </button>
+        </div>
+        <div id="contactText">
+            <p>Email us at connorjblain@icloud.com</p>
+        </div>
+
+
+        <div class = "btn-login">
+            <button type="button" id = "loginBtn" onclick="showLogin()" > Login </button>
+        </div>
+
+
+    </div>
+</div>  
+   
+
+
+<script src="Java passvault/pv.js"></script>
+</body>
+</html>
