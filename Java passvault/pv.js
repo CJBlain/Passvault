@@ -46,23 +46,22 @@ let signupBtn = document.getElementById("signupBtn")
         var emailInput = document.querySelector('#signupBox input[type="email"]');
         var passwordInput = document.querySelector('#signupBox input[type="password"]');
         
-        if (emailInput.value.trim() === '' || passwordInput.value.trim() === '') {
+        if (emailInput === '' || passwordInput === '') {
             alert('Please fill in the sign-in fields first.');
             return;
         }
 
-        var container = document.querySelector('.container');
-        container.innerHTML = ''; 
-        container.style.backgroundImage = "url('background.jpg')"; 
-
-        var username = emailInput.value.trim();
-
+        var formBox = document.getElementById('signupBox');
+        formBox.innerHTML = ''; // Remove form elements
+    
+        // Display welcome message
         var welcomeMessage = document.createElement('div');
-        welcomeMessage.innerHTML = '<h1>Welcome, User </h1><p>You have successfully entered the vault.</p>';
-        container.appendChild(welcomeMessage);
-
+        welcomeMessage.innerHTML = '<h1>Welcome, User! '  + '</h1><p>You have successfully entered the vault.</p>';
+        formBox.appendChild(welcomeMessage);
     
-    
-
+        // Create and append additional input fields
+        var additionalFields = document.getElementById('additionalFields');
+        additionalFields.style.display = 'block';
+        formBox.appendChild(additionalFields);
     }
     
