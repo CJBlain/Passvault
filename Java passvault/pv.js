@@ -18,28 +18,19 @@ let signupBtn = document.getElementById("signupBtn")
     }
 
     let aboutBtn = document.getElementById("aboutBtn");
-
     let aboutText = document.getElementById("aboutText")
     
-    aboutBtn.onclick = function() {
-        if (aboutText.style.display === "none" || aboutText.style.display === "") {
-            aboutText.style.display = "block"; // Display the text
-        } else {
-            aboutText.style.display = "none"; // Hide the text
-        }
-    };
-
-    let contactBtn = document.getElementById("contactBtn");
- 
-    let contactText = document.getElementById("contactText")
-    
     contactBtn.onclick = function() {
-        if (contactText.style.display === "none" || contactText.style.display === "") {
-            contactText.style.display = "block"; 
-        } else {
-            contactText.style.display = "none"; 
-        }
+        toggleElement(contactText);
     };
+    
+    function toggleElement(element) {
+        if (element.style.display === "none" || element.style.display === "") {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
     
 
     function showLogin() {
@@ -52,16 +43,46 @@ let signupBtn = document.getElementById("signupBtn")
         }
 
         var formBox = document.getElementById('signupBox');
-        formBox.innerHTML = ''; // Remove form elements
+        formBox.innerHTML = ''; 
     
-        // Display welcome message
+        
         var welcomeMessage = document.createElement('div');
-        welcomeMessage.innerHTML = '<h1>Welcome, User! '  + '</h1><p>You have successfully entered the vault.</p>';
+        welcomeMessage.innerHTML = '<h1>Welcome, User!'  + '</h1><p>You have successfully entered the vault.</p>';
         formBox.appendChild(welcomeMessage);
     
-        // Create and append additional input fields
-        var additionalFields = document.getElementById('additionalFields');
-        additionalFields.style.display = 'block';
+        
+        var additionalFields = document.createElement('div');
+        additionalFields.innerHTML = `
+            <input type="text" id="websiteInput" placeholder="Enter the website name">
+            <input type="text" id="passwordInput2" placeholder="Enter the password">
+            <input type="text" id="notesInput" placeholder="Enter additional notes">
+        `;
         formBox.appendChild(additionalFields);
     }
     
+
+    function saveInputValues(){
+        let websiteInput = document.getElementById("websiteInput");
+        let passwordInput = document.getElementById("passwordInput2");
+        let notesInput = document.getElementById("notesInput");
+
+        localStorage.setItem('websiteName', websiteInput.value);
+        localStorage.setItem('password', passwordInput.value);
+        localStorage.setItem('notes', notesInput.value);
+    }
+
+    function loadInputValuesToStore(){
+        let websiteInput = document.getElementById("websiteInput");
+        let passwordInput = document.getElementById("passwordInput2");
+        let notesInput = document.getElementById("notesInput");
+    
+        websiteInput.value = localStorage.getItem('websiteName') || '';
+        passwordInput.value = localStorage.getItem('password') || '';
+        notesInput.value = localStorage.getItem('notes') || '';
+    }
+    
+    document.getElementById("websiteInput").addEventListener('input', saveInputValues);
+    document.getElementById("passwordInput2").addEventListener('input', saveInputValues);
+    document.getElementById("notesInput").addEventListener('input', saveInputValues);
+
+    document.addEventListener('DOMContentLoaded', loadInputValuesToStore);
