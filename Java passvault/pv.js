@@ -61,30 +61,8 @@ let signupBtn = document.getElementById("signupBtn")
         welcomeMessage.innerHTML = '<h1>Welcome, User </h1><p>You have successfully entered the vault.</p>';
         container.appendChild(welcomeMessage);
 
-        var inputBoxWebsite = document.createElement('input');
-        inputBox.setAttribute('type', 'text');
-        inputBox.setAttribute('placeholder', 'Please enter the name of the website ');
-        inputBox.classList.add('input-box');
-        container.appendChild(inputBox);
-
-        var inputBoxPassword = document.createElement('input');
-        inputBox.setAttribute('type', 'text');
-        inputBox.setAttribute('placeholder', 'Please enter the password for the website ');
-        inputBox.classList.add('input-box');
-        container.appendChild(inputBox);
-
-        var inputBoxNotes = document.createElement('input');
-        inputBox.setAttribute('type', 'text');
-        inputBox.setAttribute('placeholder', 'Please enter any additional notes for this website ');
-        inputBox.classList.add('input-box');
-        container.appendChild(inputBox);
-    }
-
-    function displayText() {
-        var text = document.getElementById("textField");
-        text.style.display = "block";
-    }
+    
     
 
-
+    }
     
