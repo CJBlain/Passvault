@@ -48,8 +48,8 @@
 
 .input-field{
     background: #eaeaea;
-    margin: 20px 0;
-    border-radius: 5px;
+    margin: 10px 0;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     max-height: 65px;
@@ -62,7 +62,7 @@ input{
     background: transparent;
     border: 0;
     outline: 0;
-    padding: 18px 15;
+    padding: 14px 15;
 }
 
 .input-field i{
@@ -160,25 +160,37 @@ form p a{
 }
 
 #welcomeMessage {
-    margin-bottom: 40px; 
+    color: #3c00a0; 
 }
 
 
 #additionalFields {
-    margin-top: 20px; 
+    margin-top: 40px; 
 }
 
 #websiteInput {
     color: black;
-    background-color: beige;
+    top: 150px;
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background-color: #fff;
 }
 
 #passwordInput {
     color: black;
-    background-color: beige;
+    top: 165px;
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background-color: #fff;
 }
 
 #notesInput {
     color: black;
-    background-color: beige;
+    top: 175px;
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background-color: #fff;
 }
