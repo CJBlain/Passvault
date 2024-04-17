@@ -65,33 +65,28 @@ S
         formBox.appendChild(additionalFields);
 
 
+        var additionalButton = document.createElement('button');
+        additionalButton.textContent = 'Submit Additional Information';
+        formBox.appendChild(additionalButton);
+
+        additionalButton.addEventListener('click', function() {
+            var websiteName = document.getElementById('websiteInput').value;
+            var newPassword = document.getElementById('passwordInput2').value;
+            var additionalNotes = document.getElementById('notesInput').value;
+
+            console.log('Website:', websiteName);
+            console.log('New Password:', newPassword);
+            console.log('Additional Notes:', additionalNotes);
+    
+            // Optionally, clear the input fields after processing
+            document.getElementById('websiteInput').value = '';
+            document.getElementById('passwordInput2').value = '';
+            document.getElementById('notesInput').value = '';
+
+        });      
 
        
     }
     
 
-    function saveInputValues(){
-        let websiteInput = document.getElementById("websiteInput");
-        let passwordInput = document.getElementById("passwordInput2");
-        let notesInput = document.getElementById("notesInput");
-
-        localStorage.setItem('websiteName', websiteInput.value);
-        localStorage.setItem('password', passwordInput.value);
-        localStorage.setItem('notes', notesInput.value);
-    }
-
-    function loadInputValuesToStore(){
-        let websiteInput = document.getElementById("websiteInput");
-        let passwordInput = document.getElementById("passwordInput2");
-        let notesInput = document.getElementById("notesInput");
     
-        websiteInput.value = localStorage.getItem('websiteName') || '';
-        passwordInput.value = localStorage.getItem('password') || '';
-        notesInput.value = localStorage.getItem('notes') || '';
-    }
-    
-    document.getElementById("websiteInput").addEventListener('input', saveInputValues);
-    document.getElementById("passwordInput2").addEventListener('input', saveInputValues);
-    document.getElementById("notesInput").addEventListener('input', saveInputValues);
-
-    document.addEventListener('DOMContentLoaded', loadInputValuesToStore);
