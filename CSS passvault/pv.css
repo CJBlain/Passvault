@@ -195,3 +195,16 @@ form p a{
     background-color: #fff;
 }
 
+.UserInputButton {
+    background-color: gray;
+    color: rgb(191, 207, 206);
+    width: 110px;
+    height: 65px;
+    position: fixed;
+    top: 450px;
+    cursor: pointer;
+    border-top-right-radius: 20%;
+    border-bottom-left-radius: 20%;
+    right: 200px;
+    text-align: center;
+}

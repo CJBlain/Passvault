@@ -67,6 +67,7 @@ S
 
         var additionalButton = document.createElement('button');
         additionalButton.textContent = 'Submit Additional Information';
+        additionalButton.className = 'UserInputButton';
         formBox.appendChild(additionalButton);
 
         additionalButton.addEventListener('click', function() {
