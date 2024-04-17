@@ -84,9 +84,27 @@ S
             document.getElementById('passwordInput2').value = '';
             document.getElementById('notesInput').value = '';
 
+            localStorage.setItem('websiteName', websiteName);
+            localStorage.setItem('newPassword', newPassword);
+            localStorage.setItem('additionalNotes', additionalNotes);
+
         });      
 
-       
+        var storedWebsiteName = localStorage.getItem('websiteName');
+        var storedNewPassword = localStorage.getItem('newPassword');
+        var storedAdditionalNotes = localStorage.getItem('additionalNotes');
+
+        document.getElementById('websiteInput').value = storedWebsiteName || '';
+        document.getElementById('passwordInput2').value = storedNewPassword || '';
+        document.getElementById('notesInput').value = storedAdditionalNotes || '';
+    
+
+        try {
+            localStorage.setItem('testKey', 'testValue');
+            console.log('Data saved to localStorage.');
+        } catch (e) {
+            console.error('Error setting data to localStorage:', e);
+        }
     }
     
 
