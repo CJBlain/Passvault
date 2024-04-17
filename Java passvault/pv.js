@@ -23,7 +23,11 @@ let signupBtn = document.getElementById("signupBtn")
     
     contactBtn.onclick = function() {
         toggleElement(contactText);
-    };
+
+    aboutBtn.onclick = function() {
+        toggleElement(aboutText); 
+S
+    }};
     
     function toggleElement(element) {
         if (element.style.display === "none" || element.style.display === "") {
@@ -59,6 +63,8 @@ let signupBtn = document.getElementById("signupBtn")
             <input type="text" id="notesInput" placeholder="Enter additional notes">
         `;
         formBox.appendChild(additionalFields);
+
+
 
        
     }
