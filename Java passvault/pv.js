@@ -1,7 +1,7 @@
 let signupBtn = document.getElementById("signupBtn")
     let signinBtn = document.getElementById("signinBtn")
     let nameField = document.getElementById("nameField")
-    let title = document.getElementById("title")
+    
 
     signinBtn.onclick = function(){
         nameField.style.maxHeight = "0";
@@ -19,6 +19,7 @@ let signupBtn = document.getElementById("signupBtn")
 
     let aboutBtn = document.getElementById("aboutBtn");
     let aboutText = document.getElementById("aboutText")
+    let VaultStoreBtn = document.getElementById("VaultStoreBtn");
     
     contactBtn.onclick = function() {
         toggleElement(contactText);
@@ -58,6 +59,8 @@ let signupBtn = document.getElementById("signupBtn")
             <input type="text" id="notesInput" placeholder="Enter additional notes">
         `;
         formBox.appendChild(additionalFields);
+
+       
     }
     
 
