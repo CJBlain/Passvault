@@ -20,13 +20,15 @@ let signupBtn = document.getElementById("signupBtn")
     let aboutBtn = document.getElementById("aboutBtn");
     let aboutText = document.getElementById("aboutText")
     let VaultStoreBtn = document.getElementById("VaultStoreBtn");
+    let InfoButtonVisable = false;
     
     contactBtn.onclick = function() {
         toggleElement(contactText);
 
     aboutBtn.onclick = function() {
         toggleElement(aboutText); 
-S
+
+        
     }};
     
     function toggleElement(element) {
@@ -36,6 +38,34 @@ S
             element.style.display = "none";
         }
     }
+
+
+    function toggleInformationDisplay() {
+        let container = document.getElementById('signupBox'); 
+
+        if (isInformationVisible) {
+            // Information text is visible, so remove it from the container
+            let infoDisplay = container.querySelector('.infoDisplay');
+            if (infoDisplay) {
+                container.removeChild(infoDisplay);
+            }
+            // Update visibility state
+            isInformationVisible = false;
+        } else {
+            // Information text is not visible, so display it
+            let infoDisplay = document.createElement('div');
+            infoDisplay.textContent = 'Here is some important information you need to know.';
+            infoDisplay.className = 'infoDisplay'; // Add a class for easier identification
+            infoDisplay.style.marginTop = '20px';
+            container.appendChild(infoDisplay);
+            // Update visibility state
+            isInformationVisible = true;
+        }
+    }
+
+    
+
+
     
 
     function showLogin() {
@@ -105,6 +135,27 @@ S
         } catch (e) {
             console.error('Error setting data to localStorage:', e);
         }
+
+
+        var nextSectionButton = document.createElement('button');
+        nextSectionButton.textContent = 'To See Passwords';
+        nextSectionButton.className = 'nextSectionButton';
+        formBox.appendChild(nextSectionButton);
+
+        var vaultInfoButton = document.createElement('button');
+        vaultInfoButton.textContent = 'Information';
+        vaultInfoButton.className = 'vaultInfoButton';
+        formBox.appendChild(vaultInfoButton);
+
+    vaultInfoButton.addEventListener('click', function() {
+        let infoDisplay = document.createElement('div');
+        infoDisplay.textContent = 'Here is some important information you need to know.';
+        infoDisplay.style.marginTop = '20px';
+        formBox.appendChild(infoDisplay);
+    });
+
+    vaultInfoButton.addEventListener('click', toggleInformationDisplay);
+
     }
     
 
