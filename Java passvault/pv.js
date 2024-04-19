@@ -128,14 +128,19 @@ function showLogin() {
 
     vaultInfoButton.addEventListener('click', toggleInformationDisplay);
     nextSectionButton.addEventListener('click', clearScreen);
-}
+
+} 
+
+
+
+
+
 
 function clearScreen() {
     document.body.innerHTML = '';
 }
 
 
-    
 
 
 
