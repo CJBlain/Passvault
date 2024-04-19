@@ -4,8 +4,6 @@ let nameField = document.getElementById("nameField");
 let aboutBtn = document.getElementById("aboutBtn");
 let aboutText = document.getElementById("aboutText");
 let contactBtn = document.getElementById("contactBtn");
-let VaultStoreBtn = document.getElementById("VaultStoreBtn");
-let InfoButtonVisible = false;
 
 signinBtn.onclick = function() {
     nameField.style.maxHeight = "0";
@@ -52,8 +50,6 @@ function toggleInformationDisplay() {
     }
 }
 
-VaultStoreBtn.addEventListener('click', toggleInformationDisplay);
-
 function showLogin() {
     var emailInput = document.querySelector('#signupBox input[type="email"]');
     var passwordInput = document.querySelector('#signupBox input[type="password"]');
@@ -88,33 +84,15 @@ function showLogin() {
         var newPassword = document.getElementById('passwordInput2').value;
         var additionalNotes = document.getElementById('notesInput').value;
 
-        console.log('Website:', websiteName);
-        console.log('New Password:', newPassword);
-        console.log('Additional Notes:', additionalNotes);
-
-        document.getElementById('websiteInput').value = '';
-        document.getElementById('passwordInput2').value = '';
-        document.getElementById('notesInput').value = '';
-
         localStorage.setItem('websiteName', websiteName);
         localStorage.setItem('newPassword', newPassword);
         localStorage.setItem('additionalNotes', additionalNotes);
+
+        // Clear input fields after saving
+        document.getElementById('websiteInput').value = '';
+        document.getElementById('passwordInput2').value = '';
+        document.getElementById('notesInput').value = '';
     });
-
-    var storedWebsiteName = localStorage.getItem('websiteName') || '';
-    var storedNewPassword = localStorage.getItem('newPassword') || '';
-    var storedAdditionalNotes = localStorage.getItem('additionalNotes') || '';
-
-    document.getElementById('websiteInput').value = storedWebsiteName;
-    document.getElementById('passwordInput2').value = storedNewPassword;
-    document.getElementById('notesInput').value = storedAdditionalNotes;
-
-    try {
-        localStorage.setItem('testKey', 'testValue');
-        console.log('Data saved to localStorage.');
-    } catch (e) {
-        console.error('Error setting data to localStorage:', e);
-    }
 
     var nextSectionButton = document.createElement('button');
     nextSectionButton.textContent = 'To See Passwords';
@@ -127,22 +105,35 @@ function showLogin() {
     formBox.appendChild(vaultInfoButton);
 
     vaultInfoButton.addEventListener('click', toggleInformationDisplay);
-    nextSectionButton.addEventListener('click', clearScreen);
-
-} 
-
-
-
-
-
-
-function clearScreen() {
-    document.body.innerHTML = '';
+    nextSectionButton.addEventListener('click', function() {
+        clearScreen(formBox);
+    });
 }
 
+function clearScreen(formBox) {
+    document.body.innerHTML = '';
 
+    var messageDiv = document.createElement('div');
+    messageDiv.id = 'displayMessage';
+    messageDiv.textContent = 'In this Section of the VAULT you can see stored passwords, please search for the website name you previously entered below';
+    document.body.appendChild(messageDiv);
 
+    var searchForWebsite = document.createElement('button');
+    searchForWebsite.textContent = 'Search';
+    searchForWebsite.className = 'searchForWebsite';
+    document.body.appendChild(searchForWebsite);
 
+    searchForWebsite.addEventListener('click', function() {
+        var storedWebsiteName = localStorage.getItem('websiteName');
+        var storedNewPassword = localStorage.getItem('newPassword');
+        var storedAdditionalNotes = localStorage.getItem('additionalNotes');
 
+        if (storedWebsiteName) {
+            alert(`Website Name: ${storedWebsiteName}\nPassword: ${storedNewPassword}\nAdditional Notes: ${storedAdditionalNotes}`);
+        } else {
+            alert('No stored password found.');
+        }
+    });
+}
 
     
