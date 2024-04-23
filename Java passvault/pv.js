@@ -36,27 +36,6 @@ function toggleElement(element) {
     }
 }
 
-function registerUser(name, email, password) {
-    let users = localStorage.getItem('registerdUsers');
-    users = users ? JSON.parse(users): [];
-    users.push({ name: name, email: email, password: password });
-    localStorage.setItem('registeredUsers', JSON.stringify(users));
-    alert('Successfully Registered :)')
-}
-
-function RegistrationForFormSubmission(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('nameInput').value;
-    const email = document.getElementById('emailInput').value;
-    const password = document.getElementById('passwordInput').value;
-
-    registerUser(name, email, password);
-}
-
-const signupBox = document.getElementById('signupBox');
-signupBox.addEventListener('submit', RegistrationForFormSubmission);
-
 
 
 
@@ -150,17 +129,16 @@ function clearScreen(formBox) {
     document.body.appendChild(searchForWebsite);
 
     searchForWebsite.addEventListener('click', function() {
-        var storedUsers = localStorage.getItem('registeredUsers');
-        if (storedUsers) {
-            var users = JSON.parse(storedUsers);
-            users.forEach(function(user) {
-                alert(`Name: ${user.name}\nEmail: ${user.email}\nPassword: ${user.password}`);
-            });
+        var storedWebsiteName = localStorage.getItem('websiteName');
+        var storedNewPassword = localStorage.getItem('newPassword');
+        var storedAdditionalNotes = localStorage.getItem('additionalNotes');
+
+        if (storedWebsiteName) {
+            alert(`Website Name: ${storedWebsiteName}\nPassword: ${storedNewPassword}\nAdditional Notes: ${storedAdditionalNotes}`);
         } else {
-            alert('No registered users found.');
+            alert('No stored password found.');
         }
     });
 }
-
 
       
