@@ -84,7 +84,7 @@ function showLogin() {
         var newPassword = document.getElementById('passwordInput2').value;
         var additionalNotes = document.getElementById('notesInput').value;
 
-        addUserData(websiteName, newPassword, additionalNotes);
+        
 
         localStorage.setItem('websiteName', websiteName);
         localStorage.setItem('newPassword', newPassword);
