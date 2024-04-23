@@ -23,6 +23,7 @@ contactBtn.onclick = function() {
     toggleElement(contactText);
 };
 
+
 aboutBtn.onclick = function() {
     toggleElement(aboutText);
 };
@@ -35,6 +36,31 @@ function toggleElement(element) {
     }
 }
 
+function registerUser(name, email, password) {
+    let users = localStorage.getItem('registerdUsers');
+    users = users ? JSON.parse(users): [];
+    users.push({ name: name, email: email, password: password });
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
+    alert('Successfully Registered :)')
+}
+
+function RegistrationForFormSubmission(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const password = document.getElementById('passwordInput').value;
+
+    registerUser(name, email, password);
+}
+
+const signupBox = document.getElementById('signupBox');
+signupBox.addEventListener('submit', RegistrationForFormSubmission);
+
+
+
+
+
 function toggleInformationDisplay() {
     let container = document.getElementById('signupBox');
     let infoDisplay = container.querySelector('.infoDisplay');
@@ -45,7 +71,6 @@ function toggleInformationDisplay() {
         infoDisplay = document.createElement('div');
         infoDisplay.textContent = 'Enter the name of the Website, the corresponding Password and additional notes that you would like to store, afterwards press the To See Passwords button to see stored passwords';
         infoDisplay.className = 'infoDisplay';
-        //infoDisplay.style.marginTop = '20px';
         container.appendChild(infoDisplay);
     }
 }
@@ -125,16 +150,17 @@ function clearScreen(formBox) {
     document.body.appendChild(searchForWebsite);
 
     searchForWebsite.addEventListener('click', function() {
-        var storedWebsiteName = localStorage.getItem('websiteName');
-        var storedNewPassword = localStorage.getItem('newPassword');
-        var storedAdditionalNotes = localStorage.getItem('additionalNotes');
-
-        if (storedWebsiteName) {
-            alert(`Website Name: ${storedWebsiteName}\nPassword: ${storedNewPassword}\nAdditional Notes: ${storedAdditionalNotes}`);
+        var storedUsers = localStorage.getItem('registeredUsers');
+        if (storedUsers) {
+            var users = JSON.parse(storedUsers);
+            users.forEach(function(user) {
+                alert(`Name: ${user.name}\nEmail: ${user.email}\nPassword: ${user.password}`);
+            });
         } else {
-            alert('No stored password found.');
+            alert('No registered users found.');
         }
     });
 }
 
-    
+
+      
