@@ -45,7 +45,7 @@ function toggleInformationDisplay() {
         infoDisplay = document.createElement('div');
         infoDisplay.textContent = 'Enter the name of the Website, the corresponding Password and additional notes that you would like to store, afterwards press the To See Passwords button to see stored passwords';
         infoDisplay.className = 'infoDisplay';
-        infoDisplay.style.marginTop = '20px';
+        //infoDisplay.style.marginTop = '20px';
         container.appendChild(infoDisplay);
     }
 }
@@ -84,11 +84,12 @@ function showLogin() {
         var newPassword = document.getElementById('passwordInput2').value;
         var additionalNotes = document.getElementById('notesInput').value;
 
+        addUserData(websiteName, newPassword, additionalNotes);
+
         localStorage.setItem('websiteName', websiteName);
         localStorage.setItem('newPassword', newPassword);
         localStorage.setItem('additionalNotes', additionalNotes);
 
-        // Clear input fields after saving
         document.getElementById('websiteInput').value = '';
         document.getElementById('passwordInput2').value = '';
         document.getElementById('notesInput').value = '';
