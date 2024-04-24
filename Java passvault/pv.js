@@ -142,3 +142,76 @@ function clearScreen(formBox) {
 }
 
       
+
+
+document.getElementById('signupBtn').addEventListener('click', function() {
+    var username = document.querySelector('#nameField input').value;
+    var email = document.getElementById('emailInput').value;
+    var password = document.getElementById('passwordInput').value;
+
+    if (!username || !email || !password) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    // Prompt user to enter website details
+    var websiteName = prompt('Enter website name:');
+    var websitePassword = prompt('Enter website password:');
+    var notes = prompt('Enter additional notes (optional):');
+
+    // Ensure website name and password are provided
+    if (!websiteName || !websitePassword) {
+        alert('Website name and password are required.');
+        return;
+    }
+
+    // Create or update userData object with website information
+    var userData = localStorage.getItem('userData');
+    if (!userData) {
+        userData = {
+            username: username,
+            email: email,
+            password: password,
+            websites: []
+        };
+    } else {
+        userData = JSON.parse(userData);
+    }
+
+    // Add new website entry
+    var newWebsite = {
+        name: websiteName,
+        websitePassword: websitePassword,
+        notes: notes || '' // Use empty string if notes are not provided
+    };
+    userData.websites.push(newWebsite);
+
+    // Store updated userData object in localStorage
+    localStorage.setItem('userData', JSON.stringify(userData));
+
+
+    downloadJSON(userData, 'user_data.json');
+});
+
+function downloadJSON(data, filename) {
+    var jsonData = JSON.stringify(data);
+    var blob = new Blob([jsonData], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(function() {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 0);
+}
+
+
+function displayText(elementId) {
+    var element = document.getElementById(elementId);
+    element.classList.toggle('hidden');
+}
