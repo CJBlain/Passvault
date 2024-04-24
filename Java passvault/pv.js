@@ -4,7 +4,11 @@ let nameField = document.getElementById("nameField");
 let aboutBtn = document.getElementById("aboutBtn");
 let aboutText = document.getElementById("aboutText");
 let contactBtn = document.getElementById("contactBtn");
+let title = document.getElementById("title");
+let contactText = document.getElementById("contactText");
+let emailInput = document.getElementById("emailInput");
 
+// Toggle nameField and button styles on signin and signup clicks
 signinBtn.onclick = function() {
     nameField.style.maxHeight = "0";
     title.innerHTML = "Sign In";
@@ -19,15 +23,16 @@ signupBtn.onclick = function() {
     signinBtn.classList.add("disable");
 };
 
+// Toggle display of aboutText and contactText on button clicks
 contactBtn.onclick = function() {
     toggleElement(contactText);
 };
-
 
 aboutBtn.onclick = function() {
     toggleElement(aboutText);
 };
 
+// Function to toggle display of an element
 function toggleElement(element) {
     if (element.style.display === "none" || element.style.display === "") {
         element.style.display = "block";
@@ -36,10 +41,7 @@ function toggleElement(element) {
     }
 }
 
-
-
-
-
+// Function to toggle information display
 function toggleInformationDisplay() {
     let container = document.getElementById('signupBox');
     let infoDisplay = container.querySelector('.infoDisplay');
@@ -50,19 +52,13 @@ function toggleInformationDisplay() {
         infoDisplay = document.createElement('div');
         infoDisplay.textContent = 'Enter the name of the Website, the corresponding Password and additional notes that you would like to store, afterwards press the To See Passwords button to see stored passwords';
         infoDisplay.className = 'infoDisplay';
+        infoDisplay.style.marginTop = '20px';
         container.appendChild(infoDisplay);
     }
 }
 
+// Function to display the login screen and allow entering website details
 function showLogin() {
-    var emailInput = document.querySelector('#signupBox input[type="email"]');
-    var passwordInput = document.querySelector('#signupBox input[type="password"]');
-
-    if (emailInput.value === '' || passwordInput.value === '') {
-        alert('Please fill in the sign-in fields first.');
-        return;
-    }
-
     var formBox = document.getElementById('signupBox');
     formBox.innerHTML = '';
 
@@ -88,12 +84,11 @@ function showLogin() {
         var newPassword = document.getElementById('passwordInput2').value;
         var additionalNotes = document.getElementById('notesInput').value;
 
-        
-
         localStorage.setItem('websiteName', websiteName);
         localStorage.setItem('newPassword', newPassword);
         localStorage.setItem('additionalNotes', additionalNotes);
 
+        // Clear input fields after saving
         document.getElementById('websiteInput').value = '';
         document.getElementById('passwordInput2').value = '';
         document.getElementById('notesInput').value = '';
@@ -109,12 +104,16 @@ function showLogin() {
     vaultInfoButton.className = 'vaultInfoButton';
     formBox.appendChild(vaultInfoButton);
 
+    // Event listener for the "Information" button
     vaultInfoButton.addEventListener('click', toggleInformationDisplay);
+
+    // Event listener for the "Next Section" button
     nextSectionButton.addEventListener('click', function() {
         clearScreen(formBox);
     });
 }
 
+// Function to clear the screen and display stored passwords
 function clearScreen(formBox) {
     document.body.innerHTML = '';
 
@@ -141,8 +140,6 @@ function clearScreen(formBox) {
     });
 }
 
-      
-
 
 document.getElementById('signupBtn').addEventListener('click', function() {
     var username = document.querySelector('#nameField input').value;
@@ -154,18 +151,18 @@ document.getElementById('signupBtn').addEventListener('click', function() {
         return;
     }
 
-    // Prompt user to enter website details
+    
     var websiteName = prompt('Enter website name:');
     var websitePassword = prompt('Enter website password:');
     var notes = prompt('Enter additional notes (optional):');
 
-    // Ensure website name and password are provided
+    
     if (!websiteName || !websitePassword) {
         alert('Website name and password are required.');
         return;
     }
 
-    // Create or update userData object with website information
+    
     var userData = localStorage.getItem('userData');
     if (!userData) {
         userData = {
@@ -178,20 +175,20 @@ document.getElementById('signupBtn').addEventListener('click', function() {
         userData = JSON.parse(userData);
     }
 
-    // Add new website entry
+    
     var newWebsite = {
         name: websiteName,
         websitePassword: websitePassword,
-        notes: notes || '' // Use empty string if notes are not provided
+        notes: notes || '' 
     };
     userData.websites.push(newWebsite);
 
-    // Store updated userData object in localStorage
+    
     localStorage.setItem('userData', JSON.stringify(userData));
-
 
     downloadJSON(userData, 'user_data.json');
 });
+
 
 function downloadJSON(data, filename) {
     var jsonData = JSON.stringify(data);
