@@ -191,7 +191,7 @@ document.getElementById('signupBtn').addEventListener('click', function() {
 
 
 function downloadJSON(data, filename) {
-    var jsonData = JSON.stringify(data);
+    var jsonData = JSON.stringify(data, null, 2);
     var blob = new Blob([jsonData], { type: 'application/json' });
     var url = URL.createObjectURL(blob);
 
